@@ -13,8 +13,26 @@ eureka:
       defaultZone: http://localhost:8761/eureka
 
 spring:
+  application:
+    name: gateway
+  security:
+    oauth:
+      client:
+        provider:
+          google:
+            issue-url: https://accounts.google.com
+        registration:
+          google:
+            client-id: 
+            cliente-secret:
+            scope: openid
+            redirect_url: http://localhost:8080/login/oauth2/code/google
+
   cloud:
     gateway:
+      defeult-filters:
+        -LogFilter
+        - TokenRelay
       routes:
         - id: moviesRoute
           uri: lb://movies-service
