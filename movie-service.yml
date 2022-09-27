@@ -4,6 +4,21 @@ server:
     context-path: /movies/
 
 spring:
+  sleuth:
+    sampler:
+		  probability: 1.0
+  rabbitmq:
+    addresses:localhost:5672
+    virtual-host: app_vhost
+    username:username
+    password:password
+  zipkin:
+    base-url: http://localhost:9411/
+    enabled: true
+    sender:
+      type:rabbit
+    enabled:true
+
   datasource:
     url: jdbc:h2:mem:testdb
     driverClassName: org.h2.Driver

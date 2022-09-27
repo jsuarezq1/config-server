@@ -4,24 +4,29 @@ server:
     context-path: /series/
 
 spring:
-  datasource:
-    url: jdbc:h2:mem:testdb
-    driverClassName: org.h2.Driver
-    username: sa
-    password: sa
-  jpa:
-    open-in-view: false
-    show-sql: true
-    hibernate:
-      ddl-auto: update
-    properties:
-      hibernate:
-        dialect: org.hibernate.dialect.H2Dialect
-        format_sql: true
-  h2:
-    console:
-      enabled: true
-      path: /h2-console
+  sleuth:
+    sampler:
+		  probability: 1.0
+  rabbitmq:
+    addresses:localhost:5672
+    virtual-host: app_vhost
+    username:username
+    password:password
+  zipkin:
+    base-url: http://localhost:9411/
+    enabled: true
+    sender:
+      type:rabbit
+    enabled:true
+
+  data
+    mongodb
+      authentication-database: admin
+      username: root
+      password: root
+      database: test_db
+      port: 27017
+      host: localhost
 
 eureka:
   instance:
